@@ -16,20 +16,17 @@
     <IISExpressUseClassicPipelineMode />
   </PropertyGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="Codai.Ng.Directives.ts" />
-    <Content Include="Codai.Ng.Directives.js">
-      <DependentUpon>Codai.Ng.Directives.ts</DependentUpon>
-    </Content>
-    <Content Include="Codai.Ng.Directives.min.js">
-      <DependentUpon>Codai.Ng.Directives.ts</DependentUpon>
-    </Content>
+    <Content Include="common.js" />
     <Content Include="Content\bootstrap-responsive.css" />
     <Content Include="Content\bootstrap-responsive.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\images\glyphicons-halflings-white.png" />
     <Content Include="Content\images\glyphicons-halflings.png" />
+    <Content Include="Directives\ToolTipModal.js" />
     <Content Include="packages.config" />
+    <None Include="ReadMe.md" />
+    <Content Include="_all.js" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\angular-bootstrap-prettify.js" />
     <Content Include="Scripts\angular-bootstrap-prettify.min.js" />
@@ -357,6 +354,7 @@
       <DependentUpon>web.config</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
