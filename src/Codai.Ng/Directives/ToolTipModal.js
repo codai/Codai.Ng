@@ -9,9 +9,27 @@
             toolTipTemplateUrl: '=',
             modalTemplateUrl: '='
         },
-        link: function(scope, element, attrs) {
-            console.log("Recognized the Codai Directive");
-            console.log(scope.userModel.name);
+        replace: false,
+        compile: function(element, cAttrs) {
+            var template,
+                $element,
+                loader;
+
+            return function(scope, element, lAtts) {
+                loader = $http.get(scope.modalTemplateUrl)
+                .success(function (data) {
+                    template = data;
+                });
+
+                loader.then(function() {
+                    $element = $($compile(template)(scope));
+                });
+
+                element.on('click', function(e) {
+                    e.preventDefault();
+                    $element.modal('show');
+                });
+            };
         }
     };
 }]);
