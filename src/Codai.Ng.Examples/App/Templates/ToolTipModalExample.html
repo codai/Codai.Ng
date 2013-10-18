@@ -1,0 +1,14 @@
+﻿<div class="row-fluid">
+    <div class="span12">
+        <h2>ToolTip Modal</h2>
+        <p>
+            The ToolTip Modal allows the user to create an element that will show a ToolTip on Mouseover or a Modal on click.
+        </p>
+        <p>
+            <div class="row-fluid" data-ng-repeat="member in model.familyMembers">
+                <div>{{ member.name }}</div>
+                <div cdi-tool-tip-modal user-model="member"></div>
+            </div>
+        </p>
+    </div>
+</div>

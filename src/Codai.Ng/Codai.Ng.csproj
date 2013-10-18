@@ -26,7 +26,17 @@
     <Content Include="Directives\ToolTipModal.js" />
     <Content Include="packages.config" />
     <None Include="ReadMe.md" />
+    <Content Include="Scripts\Codai.Ng.js">
+      <DependentUpon>Codai.Ng.js.bundle</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Codai.Ng.min.js">
+      <DependentUpon>Codai.Ng.js.bundle</DependentUpon>
+    </Content>
     <Content Include="_all.js" />
+    <None Include="Scripts\Codai.Ng.js.bundle" />
+    <Content Include="Scripts\Codai.Ng.min.js.map">
+      <DependentUpon>Codai.Ng.js.bundle</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\angular-bootstrap-prettify.js" />
     <Content Include="Scripts\angular-bootstrap-prettify.min.js" />
@@ -335,14 +345,6 @@
     <Content Include="Scripts\i18n\angular-locale_zu.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
-    <Content Include="Scripts\typings\angularjs\angular-cookies.d.ts" />
-    <Content Include="Scripts\typings\angularjs\angular-mocks.d.ts" />
-    <Content Include="Scripts\typings\angularjs\angular-resource.d.ts" />
-    <Content Include="Scripts\typings\angularjs\angular-sanitize.d.ts" />
-    <Content Include="Scripts\typings\angularjs\angular-scenario.d.ts" />
-    <Content Include="Scripts\typings\angularjs\angular.d.ts" />
-    <Content Include="Scripts\typings\bootstrap\bootstrap.d.ts" />
-    <Content Include="Scripts\typings\jquery\jquery.d.ts" />
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -396,4 +398,7 @@
     <TypeScriptModuleKind>AMD</TypeScriptModuleKind>
   </PropertyGroup>
   <Import Project="$(VSToolsPath)\TypeScript\Microsoft.TypeScript.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy /Y $(ProjectDir)Scripts\Codai.Ng.js "$(SolutionDir)Codai.Ng.Examples\Scripts"</PostBuildEvent>
+  </PropertyGroup>
 </Project>

@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codai.Ng", "Codai.Ng\Codai.Ng.csproj", "{77805221-4B66-4BA4-BA39-F887DDF6086F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codai.Ng.Examples", "Codai.Ng.Examples\Codai.Ng.Examples.csproj", "{B1A16854-4DB1-4A00-9A4B-5ACB66B48491}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{77805221-4B66-4BA4-BA39-F887DDF6086F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77805221-4B66-4BA4-BA39-F887DDF6086F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77805221-4B66-4BA4-BA39-F887DDF6086F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1A16854-4DB1-4A00-9A4B-5ACB66B48491}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1A16854-4DB1-4A00-9A4B-5ACB66B48491}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1A16854-4DB1-4A00-9A4B-5ACB66B48491}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1A16854-4DB1-4A00-9A4B-5ACB66B48491}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
