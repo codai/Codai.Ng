@@ -6,8 +6,12 @@
         </p>
         <p>
             <div class="row-fluid" data-ng-repeat="member in model.familyMembers">
-                <div cdi-tool-tip-modal user-model="member" modal-template-url="modalTemplateUrl">
-                    <a href="#">{{ userModel.name }}</a>
+                <div>
+                    <a 
+                        href="#"
+                        cdi-tool-tip-modal 
+                        user-model="member" 
+                        modal-template-url="/app/templates/directives/ToolTipModal-Modal.html">{{ member.name }}</a>
                 </div>
             </div>
         </p>

@@ -8,34 +8,43 @@ angular.module('$codaiNg', ['$codaiNg.filters', '$codaiNg.directives', '$codaiNg
 ///#source 1 1 /Directives/ToolTipModal.js
 angular.module('$codaiNg.directives')
 
-.directive('cdiToolTipModal', ['$http', '$compile', function ($http, $compile) {
+.directive('cdiToolTipModal', ['$http', '$compile', '$templateCache', function ($http, $compile, $templateCache) {
     
     return {        
         restrict: 'EAC',
         scope: {
             userModel: '=',
-            toolTipTemplateUrl: '=',
-            modalTemplateUrl: '='
+            toolTipTemplateUrl: '@',
+            modalTemplateUrl: '@'
         },
-        compile: function(element, cAttrs) {
-            var template,
-                $element,
-                loader;
+        replace: false,
+        compile: function(element, attrs) {
+            var _$modalTemplate,
+                _$modalLoader,
+                hasModal = false;
 
-            return function(scope, element, lAtts) {
-                loader = $http.get(scope.modalTemplateUrl)
-                .success(function (data) {
-                    template = data;
-                });
+            if (attrs.modalTemplateUrl && attrs.modalTemplateUrl != "") {
+                hasModal = true;
+                _$modalLoader = $http.get(attrs.modalTemplateUrl, $templateCache)
+                    .success(function (data) {
+                        _$modalTemplate = data;
+                    });
+            }
 
-                loader.then(function() {
-                    $element = $($compile(template)(scope));
-                });
+            return function ($scope, $element, $attrs) {
+                var _modalElement;
+                
+                if (hasModal) {
+                    _$modalLoader.then(function () {
+                        _modalElement = $($compile(_$modalTemplate)($scope));
+                        var html = _modalElement.html();
+                    });
 
-                element.on('click', function(e) {
-                    e.preventDefault();
-                    $element.modal('show');
-                });
+                    $element.on('click', function (e) {
+                        e.preventDefault();
+                        _modalElement.modal('show');
+                    });
+                }
             };
         }
     };
