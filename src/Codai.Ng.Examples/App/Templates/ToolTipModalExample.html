@@ -4,16 +4,14 @@
         <p>
             The ToolTip Modal allows the user to create an element that will show a ToolTip on Mouseover or a Modal on click.
         </p>
-        <p>
-            <div class="row-fluid" data-ng-repeat="member in model.familyMembers">
-                <div>
-                    <a 
-                        href="#"
-                        cdi-tool-tip-modal 
-                        user-model="member" 
-                        modal-template-url="/app/templates/directives/ToolTipModal-Modal.html">{{ member.name }}</a>
-                </div>
+        <div class="row-fluid" data-ng-repeat="member in model.familyMembers">
+            <div>
+                <a 
+                    href="#"
+                    cdi-modal 
+                    user-model="member" 
+                    template-url="modalTemplateUrl">{{ userModel.name }}</a>
             </div>
-        </p>
+        </div>
     </div>
 </div>

@@ -8,78 +8,81 @@ angular.module('$codaiNg', ['$codaiNg.filters', '$codaiNg.directives', '$codaiNg
 ///#source 1 1 /Directives/ToolTipModal.js
 angular.module('$codaiNg.directives')
 
-.directive('cdiToolTipModal', ['$http', '$compile', '$templateCache', function ($http, $compile, $templateCache) {
+.directive('cdiModal', ['$http', '$compile', '$templateCache', function ($http, $compile, $templateCache) {
     
     return {        
         restrict: 'EAC',
         scope: {
             userModel: '=',
-            toolTipTemplateUrl: '@',
-            modalTemplateUrl: '@'
+            templateUrl: '='
         },
         replace: false,
-        compile: function(element, attrs) {
-            var _$modalTemplate,
-                _$toolTipTemplate,
-                _$modalLoader,
-                _$toolTipLoader,
-                hasTooltip = false,
-                hasModal = false;
-
-            if (attrs.modalTemplateUrl && attrs.modalTemplateUrl != "") {
-                hasModal = true;
-                _$modalLoader = $http.get(attrs.modalTemplateUrl, $templateCache)
-                    .success(function (data) {
-                        _$modalTemplate = data;
-                    });
-            }
+        link: function($scope, $element, $attrs) {
+            var template;
+            var _$loader, _modalElement;
             
-            if (attrs.toolTipTemplateUrl && attrs.toolTipTemplateUrl != "") {
-                hasTooltip = true;
-                _$toolTipLoader = $http.get(attrs.toolTipTemplateUrl, $templateCache)
-                    .success(function (data) {
-                        _$toolTipTemplate = data;
-                    });
-            }
+            _$loader = $http.get($scope.templateUrl, $templateCache)
+                .success(function(data) {
+                    template = data;
+                });
 
-            return function ($scope, $element, $attrs) {
-                var _modalElement,
-                    _tooltipElement,
-                    tooltipOptions = {};
+            _$loader.then(function() {
+                _modalElement = $($compile(template)($scope));
+            });
+            
+            $element.on('click', function (e) {
+                e.preventDefault();
+                _modalElement.modal('show');
+            });
+
+            $element.on('mouseenter', function(e) {
+                _modalElement.modal('show');
+            });
+            
+            $element.on('mouseleave', function (e) {
+                _modalElement.modal('show');
+            });
+        }
+    };
+}])
+
+.directive('cdiToolTip', ['$http', '$compile', '$templateCache', function ($http, $compile, $templateCache) {
+
+    return {
+        restrict: 'EAC',
+        scope: {
+            userModel: '=',
+            templateUrl: '@'
+        },
+        replace: false,
+        link: function($scope, $element, $attrs) {
+            var template;
+            var _$loader, popoverElement;
+            
+            _$loader = $http.get($scope.templateUrl, $templateCache)
+                .success(function(data) {
+                    template = data;
+                });
+
+            _$loader.then(function() {
+                popoverElement = $($compile(template)($scope));
                 
-                if (hasTooltip) {
-                    _$toolTipLoader.then(function () {
-                        _tooltipElement = $($compile(_$toolTipTemplate)($scope));
-                        var html = _tooltipElement.html();
-                        
-                        tooltipOptions = {
-                            html: true,
-                            placement: 'right',
-                            trigger: 'hover',
-                            title: _tooltipElement
-                    };
-                        
-                        $element.tooltip(tooltipOptions);
-                    });
+                var options = {
+                    html: true,
+                    placement: 'right',
+                    trigger: 'hover',
+                    content: popoverElement // "<div>" + $scope.userModel.name + "</div>"
+                };
 
-                    $element.on('mouseenter', function (e) {
-                        e.preventDefault();
-                        $element.tooltip('show');
-                    });
-                }
-                
-                if (hasModal) {
-                    _$modalLoader.then(function () {
-                        _modalElement = $($compile(_$modalTemplate)($scope));
-                        var html = _modalElement.html();
-                    });
+                $element.popover(options);
+            });
+            
+            //$element.on('mouseenter', function (e) {
+            //    e.preventDefault();
+            //    popoverElement.popover('show');
+            //});
 
-                    $element.on('click', function (e) {
-                        e.preventDefault();
-                        _modalElement.modal('show');
-                    });
-                }
-            };
+            
         }
     };
 }]);
