@@ -2,10 +2,10 @@
 
 var examplesApp = angular.module('examplesApp', ['$codaiNg.directives'])
     .config(function($routeProvider, $locationProvider) {
-        $routeProvider.when('/ToolTipModal',
+        $routeProvider.when('/Modal',
             {
-                templateUrl: 'App/Templates/ToolTipModalExample.html',
-                controller: 'ToolTipModalExampleCtrl'
+                templateUrl: 'App/Templates/ModalExample.html',
+                controller: 'ModalExampleCtrl'
             });
         $routeProvider.otherwise({ redirectTo: '' });
         $locationProvider.html5Mode(false);

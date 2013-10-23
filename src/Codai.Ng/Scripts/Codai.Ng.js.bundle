@@ -2,5 +2,5 @@
 <bundle minify="false" runOnBuild="true" output="Codai.Ng.js">
   <!--The order of the <file> elements determines the order of them when bundled.-->
   <file>/common.js</file>
-  <file>/Directives/ToolTipModal.js</file>
+  <file>/Directives/Modal.js</file>
 </bundle>

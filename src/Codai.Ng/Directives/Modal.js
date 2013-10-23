@@ -1,12 +1,4 @@
-﻿///#source 1 1 /common.js
-/// <reference path="_all.js" />
-
-angular.module('$codaiNg.config', []).value('$codaiNgConfig', {});
-angular.module('$codaiNg.filters', ['$codaiNg.config']);
-angular.module('$codaiNg.directives', ['$codaiNg.config']);
-angular.module('$codaiNg', ['$codaiNg.filters', '$codaiNg.directives', '$codaiNg.config']);
-///#source 1 1 /Directives/Modal.js
-angular.module('$codaiNg.directives')
+﻿angular.module('$codaiNg.directives')
 
 .directive('cdiModal', ['$http', '$compile', '$templateCache', function ($http, $compile, $templateCache) {
     

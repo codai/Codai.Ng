@@ -1,6 +1,6 @@
 ﻿'use strict';
 
-examplesApp.factory('toolTipModalData', function () {
+examplesApp.factory('modalData', function () {
     return {
         getFamilyMembers: function () {
             var model = {                
